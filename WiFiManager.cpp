@@ -451,15 +451,14 @@ void WiFiManager::handleRoot() {
   }
 
   String page = FPSTR(HTTP_HEADER);
-  page.replace("{v}", "Options");
+  page.replace("{v}", "NDM | Configurar conexión");
   page += FPSTR(HTTP_SCRIPT);
   page += FPSTR(HTTP_STYLE);
   page += _customHeadElement;
   page += FPSTR(HTTP_HEADER_END);
   page += String(F("<h1>"));
   page += _apName;
-  page += String(F("</h1>"));
-  page += String(F("<h3>WiFiManager</h3>"));
+  page += FPSTR(HTTP_PORTAL_LOGO);
   page += FPSTR(HTTP_PORTAL_OPTIONS);
   page += FPSTR(HTTP_END);
 
@@ -472,11 +471,12 @@ void WiFiManager::handleRoot() {
 void WiFiManager::handleWifi(boolean scan) {
 
   String page = FPSTR(HTTP_HEADER);
-  page.replace("{v}", "Config ESP");
+  page.replace("{v}", "NDM | Configurar conexión");
   page += FPSTR(HTTP_SCRIPT);
   page += FPSTR(HTTP_STYLE);
   page += _customHeadElement;
   page += FPSTR(HTTP_HEADER_END);
+  page += FPSTR(HTTP_PORTAL_LOGO);
 
   if (scan) {
     int n = WiFi.scanNetworks();
@@ -672,6 +672,7 @@ void WiFiManager::handleWifiSave() {
   page += FPSTR(HTTP_STYLE);
   page += _customHeadElement;
   page += FPSTR(HTTP_HEADER_END);
+  page += FPSTR(HTTP_PORTAL_LOGO);
   page += FPSTR(HTTP_SAVED);
   page += FPSTR(HTTP_END);
 
@@ -693,6 +694,7 @@ void WiFiManager::handleInfo() {
   page += FPSTR(HTTP_STYLE);
   page += _customHeadElement;
   page += FPSTR(HTTP_HEADER_END);
+  page += FPSTR(HTTP_PORTAL_LOGO);
   page += F("<dl>");
   page += F("<dt>Chip ID</dt><dd>");
   page += ESP.getChipId();
@@ -734,7 +736,8 @@ void WiFiManager::handleReset() {
   page += FPSTR(HTTP_STYLE);
   page += _customHeadElement;
   page += FPSTR(HTTP_HEADER_END);
-  page += F("Module will reset in a few seconds.");
+  page += FPSTR(HTTP_PORTAL_LOGO);
+  page += F("El equipo se reiniciará en unos segundos...");
   page += FPSTR(HTTP_END);
 
   server->sendHeader("Content-Length", String(page.length()));
