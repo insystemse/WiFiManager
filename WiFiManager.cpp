@@ -457,7 +457,7 @@ void WiFiManager::handleRoot() {
   page += _customHeadElement;
   page += FPSTR(HTTP_HEADER_END);
   page += String(F("<h1>"));
-  page += _apName;
+  // page += _apName;
   page += FPSTR(HTTP_PORTAL_LOGO);
   page += FPSTR(HTTP_PORTAL_OPTIONS);
   page += FPSTR(HTTP_END);
